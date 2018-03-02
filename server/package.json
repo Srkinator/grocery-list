@@ -1,0 +1,10 @@
+{
+    "scripts": {
+        "start": "node server.js"
+    },
+    "name": "groceries",
+    "version": "0.0.1",
+    "dependencies": {
+        "express": "*"
+    }
+}
