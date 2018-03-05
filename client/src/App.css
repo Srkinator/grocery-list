@@ -60,6 +60,11 @@ input{
   margin-top: 10px;
 }
 
+#missing-name, #missing-quantity {
+  margin: 0 auto;
+  text-align: center;
+}
+
 .basic-slide {
   display: inline-block;
   width: 215px;

@@ -30,16 +30,35 @@ class Main extends Component {
         this.fetchData();
     }
 
-    addButton = (e) =>{
-        document.getElementsByName('grocery-name')[0].value = "";
-        document.getElementsByName('grocery-quantity')[0].value = "";
+    sendGrocery = (e) =>{
+        const missingName = document.getElementById('missing-name');
+        const missingQuantity = document.getElementById('missing-quantity');
         let putOrPost ="post";
+        let nameValidation = false;
+        let quantityValidation = false;
 
         const newGrocery = {
             name: this.state.newName,
             quantity: this.state.newQuantity
         }
 
+        if(newGrocery.name){
+            missingName.setAttribute('style', "color:red; display:none");
+            nameValidation = true;
+        } else {
+            missingName.setAttribute('style', "color:red");
+            nameValidation = false;
+        }
+
+        if(newGrocery.quantity){
+            missingQuantity.setAttribute('style', "color:red; display:none");
+            quantityValidation = true;
+        } else {
+            missingQuantity.setAttribute('style', "color:red");
+            quantityValidation = false;
+        }
+
+        if(nameValidation && quantityValidation){
         for(let i = 0; i< this.state.groceries.length; i++){
             if(this.state.groceries[i].name ===newGrocery.name){
                 putOrPost = "put"
@@ -57,11 +76,13 @@ class Main extends Component {
                 console.log(err);
             });
         }
-
-        this.setState({
-            newName: "",
-            newQuantity: ""
-        })
+        document.getElementsByName('grocery-name')[0].value = "";
+        document.getElementsByName('grocery-quantity')[0].value = "";
+            this.setState({
+                newName: "",
+                newQuantity: ""
+            })
+        }
     }
 
     collectInput = (e) =>{
@@ -76,7 +97,6 @@ class Main extends Component {
                 newQuantity: Number(e.target.value)
             });
         }
-        console.log(e.target.name)
     }
     
     render() {
@@ -84,7 +104,9 @@ class Main extends Component {
         return (
             <div className ="container-fluid">
                 <h1 className="text-warning">Welcome to Grocery List App :)</h1>
-                <UserInput addButton ={this.addButton} collectInput={this.collectInput}/>
+                <UserInput sendGrocery ={this.sendGrocery} collectInput={this.collectInput}/>
+                <p id="missing-name" style={{color:"red", display:"none"}}>Please enter grocery name before you want to proceed!</p>
+                <p id="missing-quantity" style={{color:"red", display:"none"}}>Please enter grocery quantity before you want to proceed!</p>
                 <GroceryList data={this.state.groceries} />
             </div>
         );

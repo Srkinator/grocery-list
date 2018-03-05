@@ -1,38 +1,14 @@
 [
   {
-    "name": "radi",
-    "quantity": 1
-  },
-  {
-    "name": "test",
-    "quantity": 5
+    "name": "apple",
+    "quantity": 50
   },
   {
     "name": "orange",
-    "quantity": 1011
-  },
-  {
-    "name": "kurac",
-    "quantity": 1
-  },
-  {
-    "name": "apple",
-    "quantity": 1
-  },
-  {
-    "name": "novo",
-    "quantity": 1
-  },
-  {
-    "name": "asdf",
-    "quantity": 123
-  },
-  {
-    "name": "xx",
-    "quantity": 123
+    "quantity": 101
   },
   {
     "name": "a",
-    "quantity": ""
+    "quantity": 50
   }
 ]
