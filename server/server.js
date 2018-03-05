@@ -38,8 +38,12 @@ function postRequestHandler(request, response) {
 
 function writeFileHandler(grocery, reqType) {
     if(reqType === 'delete'){
-        console.log(`Deleted Grocery : ${grocery.name}`);
-    } else{
+        console.log(`Deleted Grocery : ${grocery}`);
+    }
+    else if(reqType === 'put'){
+        console.log(`Updated Grocery : ${grocery}`);
+    }
+    else{
         console.log(`Added Grocery : ${grocery.name}`);
     }
 }
@@ -56,8 +60,29 @@ function deleteRequestHandler(request, response){
         }
     }
 
-    fs.writeFile('db/data.json', JSON.stringify(currentData, null, 2), writeFileHandler(newData, 'delete'));
+    fs.writeFile('db/data.json', JSON.stringify(currentData, null, 2), writeFileHandler(name, 'delete'));
     response.send(`${name} is deleted from list`)
+}
+
+app.put('/:name', putRequestHandler);
+function putRequestHandler(request, response){
+    let currentData = groceries;
+    let name = request.params.name;
+    let newData = request.body;
+    let updatedData = [];
+
+    Number(newData.quantity);
+
+    for(let i = 0; i<currentData.length; i++){
+        let grocery = currentData[i];
+        if(name ===grocery.name){
+            grocery.quantity = newData.quantity;
+        }
+        updatedData.push(grocery);
+    }
+
+    fs.writeFile('db/data.json', JSON.stringify(currentData, null, 2), writeFileHandler(name, 'put'));
+    response.send(newData);
 }
 
 
