@@ -33,7 +33,7 @@ class Main extends Component {
     sendGrocery = (e) =>{
         const missingName = document.getElementById('missing-name');
         const missingQuantity = document.getElementById('missing-quantity');
-        let putOrPost ="post";
+        let putOrPost ='post';
         let nameValidation = false;
         let quantityValidation = false;
 
@@ -61,15 +61,15 @@ class Main extends Component {
         if(nameValidation && quantityValidation){
         for(let i = 0; i< this.state.groceries.length; i++){
             if(this.state.groceries[i].name ===newGrocery.name){
-                putOrPost = "put"
-                communicationService.putRequest("/" + newGrocery.name, newGrocery, (response)=>{
+                putOrPost = 'put';
+                communicationService.putRequest('/' + newGrocery.name, newGrocery, (response)=>{
                   this.fetchData();
                 }, (err)=>{
                     console.log(err);
                 });
             }
         }
-        if(putOrPost === "post"){
+        if(putOrPost === 'post'){
             communicationService.postRequest('/', newGrocery, (response)=>{
             this.fetchData();
             }, (err)=>{
@@ -79,35 +79,42 @@ class Main extends Component {
         document.getElementsByName('grocery-name')[0].value = "";
         document.getElementsByName('grocery-quantity')[0].value = "";
             this.setState({
-                newName: "",
-                newQuantity: ""
+                newName: '',
+                newQuantity: ''
             })
         }
     }
 
     collectInput = (e) =>{
-        if(e.target.name === "grocery-name"){
+        if(e.target.name === 'grocery-name'){
             this.setState({
                 newName: e.target.value
             });
         }
 
-        if(e.target.name === "grocery-quantity"){
+        if(e.target.name === 'grocery-quantity'){
             this.setState({
                 newQuantity: Number(e.target.value)
             });
         }
     }
+
+    deleteGrocery = (e) =>{
+        communicationService.deleteRequest('/' + e.currentTarget.name, (response)=>{
+            this.fetchData();
+        }, (err)=>{
+            console.log(err);
+        });
+    }
     
     render() {
-        console.log(this.state.groceries)
         return (
             <div className ="container-fluid">
                 <h1 className="text-warning">Welcome to Grocery List App :)</h1>
-                <UserInput sendGrocery ={this.sendGrocery} collectInput={this.collectInput}/>
+                <UserInput sendGrocery ={this.sendGrocery} collectInput={this.collectInput} />
                 <p id="missing-name" style={{color:"red", display:"none"}}>Please enter grocery name before you want to proceed!</p>
                 <p id="missing-quantity" style={{color:"red", display:"none"}}>Please enter grocery quantity before you want to proceed!</p>
-                <GroceryList data={this.state.groceries} />
+                <GroceryList data={this.state.groceries} deleteGrocery={this.deleteGrocery}/>
             </div>
         );
     }

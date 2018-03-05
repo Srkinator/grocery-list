@@ -1,14 +1,10 @@
 [
   {
     "name": "apple",
-    "quantity": 50
+    "quantity": 10
   },
   {
     "name": "orange",
-    "quantity": 101
-  },
-  {
-    "name": "a",
-    "quantity": 50
+    "quantity": 55
   }
 ]
