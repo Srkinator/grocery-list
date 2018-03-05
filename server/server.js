@@ -69,6 +69,7 @@ function putRequestHandler(request, response){
     let currentData = groceries;
     let name = request.params.name;
     let newData = request.body;
+    console.log(newData);
     let updatedData = [];
 
     Number(newData.quantity);

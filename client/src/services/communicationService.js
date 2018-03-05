@@ -9,11 +9,22 @@ class CommunicationService {
 		axios.get(requestUrl)
 			.then(response => succesHandler(response))
 			.catch(error => errorHandler(error));
-	}
+    }
+    
 	postRequest(url, data, succesHandler, errorHandler) {
+        console.log("POST REQUEST");
 		const requestUrl = `${DEFAULT_URL}${url}`;
 
 		axios.post(requestUrl, data)
+			.then(response => succesHandler(response))
+			.catch(error => errorHandler(error));
+    }
+    
+    putRequest(url, data, succesHandler, errorHandler) {
+        console.log("PUT REQUEST");
+		const requestUrl = `${DEFAULT_URL}${url}`;
+
+		axios.put(requestUrl, data)
 			.then(response => succesHandler(response))
 			.catch(error => errorHandler(error));
 	}

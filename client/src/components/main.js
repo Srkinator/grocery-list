@@ -33,19 +33,35 @@ class Main extends Component {
     addButton = (e) =>{
         document.getElementsByName('grocery-name')[0].value = "";
         document.getElementsByName('grocery-quantity')[0].value = "";
+        let putOrPost ="post";
 
         const newGrocery = {
             name: this.state.newName,
             quantity: this.state.newQuantity
         }
 
-        communicationService.postRequest('/', newGrocery, (response)=>{
-            this.setState({
-                groceries: [...this.state.groceries, response.data]
+        for(let i = 0; i< this.state.groceries.length; i++){
+            if(this.state.groceries[i].name ===newGrocery.name){
+                putOrPost = "put"
+                communicationService.putRequest("/" + newGrocery.name, newGrocery, (response)=>{
+                  this.fetchData();
+                }, (err)=>{
+                    console.log(err);
+                });
+            }
+        }
+        if(putOrPost === "post"){
+            communicationService.postRequest('/', newGrocery, (response)=>{
+            this.fetchData();
+            }, (err)=>{
+                console.log(err);
             });
-        }, (err)=>{
-            console.log(err);
-        });
+        }
+
+        this.setState({
+            newName: "",
+            newQuantity: ""
+        })
     }
 
     collectInput = (e) =>{
@@ -64,6 +80,7 @@ class Main extends Component {
     }
     
     render() {
+        console.log(this.state.groceries)
         return (
             <div className ="container-fluid">
                 <h1 className="text-warning">Welcome to Grocery List App :)</h1>
