@@ -2,6 +2,11 @@
   text-align: center;
 }
 
+body {
+  font-family: 'Indie Flower', cursive;
+  font-size: 1.5em;
+}
+
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 80px;
@@ -30,11 +35,31 @@
 h1 {
   text-align: center;
   margin: 5%;
-  color: orange;
+  font-size: 2.5em;
 }
+
+
 input{
-  margin-bottom: 20px;
+  margin-bottom: 40px;
 }
+
+.grocery-name {
+  margin-top: 10px;
+  text-align: center;
+  font-size: 1.5em;
+}
+
+.grocery-quantity {
+  margin-top: 10px;
+  text-align: center;
+  font-size: 1.5em;
+  margin-right: 5%;
+}
+
+.btn-warning {
+  margin-top: 10px;
+}
+
 .basic-slide {
   display: inline-block;
   width: 215px;
