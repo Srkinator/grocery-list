@@ -90,7 +90,7 @@ class Main extends Component {
     collectInput = (e) =>{
         if(e.target.name === 'grocery-name'){
             this.setState({
-                newName: e.target.value
+                newName: e.target.value.toLowerCase()
             });
         }
 
