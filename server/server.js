@@ -5,6 +5,9 @@ const fs = require("fs");
 const data = fs.readFileSync("./db/data.json");
 const groceries = JSON.parse(data);
 const http = require("http").Server(app);
+const io = require("socket.io")(http);
+let listOfClients =[];
+
 
 
 app.use(bodyParser.json());
@@ -85,6 +88,25 @@ function putRequestHandler(request, response){
     fs.writeFile('db/data.json', JSON.stringify(currentData, null, 2), writeFileHandler(name, 'put'));
     response.send(newData);
 }
+
+io.sockets.on('connection', (socket) => {
+	clients.push(socket.id);
+
+	socket.on('notifyServer', () => {
+		for (let i = 0; i < clients.length; i++) {
+			io.sockets.connected[clients[i]].emit('notifyClient');
+		}
+	});
+
+	socket.on('disconnect', () => {
+
+		for (let i = 0; i < clients.length; i++) {
+			if (clients[i] === socket.id) {
+				clients.splice(i, 1);
+			}
+		}
+	})
+});
 
 
 http.listen(9000, ()=>{

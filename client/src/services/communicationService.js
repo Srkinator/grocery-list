@@ -12,7 +12,6 @@ class CommunicationService {
     }
     
 	postRequest(url, data, successHandler, errorHandler) {
-        console.log("POST REQUEST");
 		const requestUrl = `${DEFAULT_URL}${url}`;
 
 		axios.post(requestUrl, data)
@@ -21,7 +20,6 @@ class CommunicationService {
     }
     
     putRequest(url, data, successHandler, errorHandler) {
-        console.log("PUT REQUEST");
 		const requestUrl = `${DEFAULT_URL}${url}`;
 
 		axios.put(requestUrl, data)

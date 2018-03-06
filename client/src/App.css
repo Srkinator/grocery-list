@@ -38,7 +38,6 @@ h1 {
   font-size: 2.5em;
 }
 
-
 input{
   margin-bottom: 40px;
 }
@@ -47,6 +46,10 @@ input{
   margin-top: 10px;
   text-align: center;
   font-size: 1.5em;
+}
+
+#quantity {
+  margin-right: 5%;
 }
 
 .grocery-quantity {

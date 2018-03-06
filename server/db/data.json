@@ -1,10 +1,22 @@
 [
   {
-    "name": "apple",
-    "quantity": 10
+    "name": "radi",
+    "quantity": 1
+  },
+  {
+    "name": "test",
+    "quantity": 5
   },
   {
     "name": "orange",
-    "quantity": 55
+    "quantity": 1011
+  },
+  {
+    "name": "apple",
+    "quantity": 101
+  },
+  {
+    "name": "novo",
+    "quantity": 1
   }
 ]
