@@ -1,35 +1,6 @@
-.App {
-  text-align: center;
-}
-
 body {
   font-family: 'Indie Flower', cursive;
   font-size: 1.5em;
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}
-
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
-}
-
-.App-title {
-  font-size: 1.5em;
-}
-
-.App-intro {
-  font-size: large;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
 }
 
 h1 {
@@ -42,6 +13,9 @@ input{
   margin-bottom: 40px;
 }
 
+span:hover{
+  box-shadow: 10px 10px 8px #377D6A;
+}
 .grocery-name {
   margin-top: 10px;
   text-align: center;
@@ -52,6 +26,15 @@ input{
   margin-right: 5%;
 }
 
+.btn {
+  height: 56px;
+  width: 56px;
+}
+
+.btn-success {
+  margin-left: 50px;
+}
+
 .grocery-quantity {
   margin-top: 10px;
   text-align: center;
@@ -60,12 +43,16 @@ input{
 }
 
 .btn-warning {
-  margin-top: 10px;
+  margin-top: 18px;
 }
 
 #missing-name, #missing-quantity {
   margin: 0 auto;
   text-align: center;
+}
+
+span {
+  margin-top: 20px !important;
 }
 
 .basic-slide {
@@ -74,7 +61,6 @@ input{
   padding: 10px 0 10px 15px;
   font-family: "Open Sans", sans;
   font-weight: 400;
-  color: #377D6A;
   background: #efefef;
   border: 0;
   border-radius: 3px;
@@ -85,7 +71,8 @@ input{
 .basic-slide::-webkit-input-placeholder {
   color: #efefef;
   text-indent: 0;
-  font-weight: 300;
+  font-weight: 100;
+  font-size: 0.7em;
 }
 .basic-slide + label {
   display: inline-block;
@@ -102,7 +89,6 @@ input{
 
 .basic-slide:focus,
 .basic-slide:active {
-  color: #377D6A;
   text-indent: 0;
   background: #fff;
   border-top-left-radius: 0;
@@ -114,5 +100,82 @@ input{
 }
 .basic-slide:focus + label,
 .basic-slide:active + label {
-  transform: translateX(-100%);
+  transform: translateY(+100%);
+  width: 215px;
+}
+
+.style-fix {
+  margin-left: 20%;
+}
+
+@media only screen and (max-width: 900px) {
+  #quantity, #name {
+    margin-left: 40%;
+    margin-bottom: 20px;
+  }
+  label {
+    margin-left: 30%;
+  }
+  .basic-slide:focus + label,
+  .basic-slide:active + label { 
+  transform: translateY(+100%);
+  width: 100px;
+  }
+  .btn-success{
+    margin-left: 46%;
+    width: 100px;
+    margin-bottom: 30px;
+  }
+  .style-fix{
+    margin-left: 0;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  #quantity, #name {
+    margin-left: 80px;
+    margin-bottom: 20px;
+  }
+  label {
+    margin-left: 50px;
+  }
+  .basic-slide:focus + label,
+  .basic-slide:active + label { 
+  transform: translateX(-50%);
+  width: 100px;
+  }
+  .btn-success{
+    margin-left: 32%;
+    width: 100px;
+    margin-bottom: 30px;
+  }
+  .col-md-3{
+    margin-left: 25%;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  #quantity, #name {
+    margin-left: 80px;
+    margin-bottom: 20px;
+  }
+  label {
+    margin-left: 50px;
+  }
+  .basic-slide:focus + label,
+  .basic-slide:active + label { 
+  transform: translateX(-50%);
+  width: 100px;
+  }
+  .btn-success{
+    margin-left: 32%;
+    width: 100px;
+    margin-bottom: 30px;
+  }
+  .style-fix{
+    margin-left: 0;
+  }
+  .col-md-3{
+    margin-left: 0;
+  }
 }

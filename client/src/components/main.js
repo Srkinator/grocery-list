@@ -119,7 +119,7 @@ class Main extends Component {
     render() {
         return (
             <div className ="container-fluid">
-                <h1 className="text-warning">Welcome to Grocery List App :)</h1>
+                <h1 className="text-success">Welcome to Grocery List App :)</h1>
                 <UserInput sendGrocery ={this.sendGrocery} collectInput={this.collectInput} />
                 <p id="missing-name" style={{color:"red", display:"none"}}>Please enter grocery name before you want to proceed!</p>
                 <p id="missing-quantity" style={{color:"red", display:"none"}}>Please enter grocery quantity before you want to proceed!</p>
