@@ -90,19 +90,19 @@ function putRequestHandler(request, response){
 }
 
 io.sockets.on('connection', (socket) => {
-	clients.push(socket.id);
+	listOfClients.push(socket.id);
 
 	socket.on('notifyServer', () => {
-		for (let i = 0; i < clients.length; i++) {
-			io.sockets.connected[clients[i]].emit('notifyClient');
+		for (let i = 0; i < listOfClients.length; i++) {
+			io.sockets.connected[listOfClients[i]].emit('notifyClient');
 		}
 	});
 
 	socket.on('disconnect', () => {
 
-		for (let i = 0; i < clients.length; i++) {
-			if (clients[i] === socket.id) {
-				clients.splice(i, 1);
+		for (let i = 0; i < listOfClients.length; i++) {
+			if (listOfClients[i] === socket.id) {
+				listOfClients.splice(i, 1);
 			}
 		}
 	})

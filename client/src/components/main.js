@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import UserInput from './userInput';
 import GroceryList from './groceryList';
 import { communicationService } from "../services/communicationService";
+import { notifyServer, onSocketNotification } from "../sockets";
 
 
 class Main extends Component {
@@ -27,7 +28,7 @@ class Main extends Component {
     }
 
     componentDidMount(){
-        this.fetchData();
+        this.refreshServer();
     }
 
     sendGrocery = (e) =>{
@@ -63,7 +64,7 @@ class Main extends Component {
             if(this.state.groceries[i].name ===newGrocery.name){
                 putOrPost = 'put';
                 communicationService.putRequest('/' + newGrocery.name, newGrocery, (response)=>{
-                  this.fetchData();
+                  this.refreshServer();
                 }, (err)=>{
                     console.log(err);
                 });
@@ -71,7 +72,7 @@ class Main extends Component {
         }
         if(putOrPost === 'post'){
             communicationService.postRequest('/', newGrocery, (response)=>{
-            this.fetchData();
+            this.refreshServer();
             }, (err)=>{
                 console.log(err);
             });
@@ -83,6 +84,7 @@ class Main extends Component {
                 newQuantity: ''
             })
         }
+        notifyServer();
     }
 
     collectInput = (e) =>{
@@ -101,10 +103,17 @@ class Main extends Component {
 
     deleteGrocery = (e) =>{
         communicationService.deleteRequest('/' + e.currentTarget.name, (response)=>{
-            this.fetchData();
+            this.refreshServer();
         }, (err)=>{
             console.log(err);
         });
+
+        notifyServer();
+    }
+
+    refreshServer = () =>{
+        this.fetchData();
+        onSocketNotification(this.fetchData);
     }
     
     render() {
